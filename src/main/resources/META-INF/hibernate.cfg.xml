@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hibernate-configuration xmlns="http://www.hibernate.org/xsd/orm/cfg">
+    <session-factory>
+
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/FestiSync</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">admin</property>
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <property name="show_sql">true</property>
+
+        <mapping class="org.example.entity.Artista"></mapping>
+        <mapping class="org.example.entity.Categoria"></mapping>
+        <mapping class="org.example.entity.Evento"></mapping>
+        <mapping class="org.example.entity.EventoArtista"></mapping>
+        <mapping class="org.example.entity.Lugar"></mapping>
+
+    </session-factory>
+</hibernate-configuration>
