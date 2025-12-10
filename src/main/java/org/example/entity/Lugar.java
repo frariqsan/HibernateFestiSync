@@ -2,18 +2,21 @@ package org.example.entity;
 
 import jakarta.persistence.*;
 
+import java.util.StringJoiner;
+
 @Entity
 @Table(name = "lugar")
 public class Lugar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_lugar")
     private Long id;
     @Column(nullable = false)
     private String nombre;
     @Column(nullable = false)
     private String ciudad;
     @Column(nullable = true)
-    private int aforo;
+    private Integer aforo;
 
     public Long getId() {
         return id;
@@ -45,5 +48,10 @@ public class Lugar {
 
     public void setAforo(int aforo) {
         this.aforo = aforo;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
     }
 }

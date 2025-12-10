@@ -3,20 +3,22 @@ package org.example.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.StringJoiner;
 
 @Entity
 @Table(name = "evento")
 public class Evento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_evento")
     private Long id;
-    @Column(nullable = false)
+    @Column(nullable = false, name = "nombre")
     private String nombre;
-    @Column(nullable = false)
+    @Column(nullable = false, name = "fecha")
     private LocalDate fecha;
     //falta lugar_id
     @ManyToOne
-    @JoinColumn(name = "lugar_id", nullable = false)
+    @JoinColumn(name = "id_lugar", nullable = false)
     private Lugar lugar;
 
     public Long getId() {
@@ -41,5 +43,15 @@ public class Evento {
 
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Evento.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("nombre='" + nombre + "'")
+                .add("fecha=" + fecha)
+                .add("lugar=" + lugar)
+                .toString();
     }
 }

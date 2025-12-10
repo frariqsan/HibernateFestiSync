@@ -2,16 +2,19 @@ package org.example.entity;
 
 import jakarta.persistence.*;
 
+import java.util.StringJoiner;
+
 @Entity
 @Table(name = "categoria")
 public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_categoria")
     private Long id;
     @Column(nullable = false)
     private String nombre;
     @ManyToOne
-    @JoinColumn(name = "evento_id", nullable = false)
+    @JoinColumn(name = "id_evento", nullable = false)
     private Evento evento;
 
     public Long getId() {
@@ -36,5 +39,14 @@ public class Categoria {
 
     public void setEvento(Evento evento) {
         this.evento = evento;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Categoria.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("nombre='" + nombre + "'")
+                .add("evento=" + evento)
+                .toString();
     }
 }
